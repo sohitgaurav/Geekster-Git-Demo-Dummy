@@ -1,0 +1,18 @@
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+public class Main {
+    public static void main(String[] args) throws Exception{
+        String url="https://www.weatherbit.io/c8e66a6633cb4d52bf78f7bd3273cb06";
+        HttpRequest request= HttpRequest.newBuilder().GET().uri(URI.create(url)).build();
+
+        HttpClient httpClient= HttpClient.newBuilder().build();
+
+        HttpResponse<String> httpResponse= httpClient.send(request,HttpResponse.BodyHandlers.ofString());
+
+        System.out.println(httpResponse.statusCode());
+        System.out.println(httpResponse.body());
+    }
+}
