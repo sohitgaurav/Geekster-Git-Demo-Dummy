@@ -1,0 +1,34 @@
+package com.example.my_first_app;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestTemplate;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.RestTemplate;
+
+//@SpringBootApplication
+
+
+
+public class MyFirstAppApplication {
+
+	public static void main(String[] args) {
+
+		//SpringApplication.run(MyFirstAppApplication.class, args);
+		RestTemplate restTemplate= new RestTemplate();
+		String resouceurl="https://simple-books-api.glitch.me/books";
+	 ResponseEntity<String> response =restTemplate.getForEntity(resouceurl,String.class);
+//		String output=response.getBody();
+//		ObjectMapper mapper = new ObjectMapper();
+//
+//		Book[] books = mapper.readValue(output,Book[].class);
+//		for(Book book: books){
+//			System.out.print(book);
+//		}
+//		Mapper.writevalue(new File("C:\\car.jason"),output);
+		System.out.print(response.getStatusCode()+"\n"+response.getBody());
+	}
+
+}
